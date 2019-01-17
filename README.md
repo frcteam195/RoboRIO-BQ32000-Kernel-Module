@@ -1,5 +1,5 @@
-# rtc-bq32k-rRIO
-Supercharging the RoboRIO with the BQ32000 from TI
+# RoboRIO BQ32000 Kernel Module
+Adding an RTC to the RoboRIO with the BQ32000 from TI
 
 RTC Datasheet:  
 http://www.ti.com/lit/ds/symlink/bq32000.pdf
@@ -72,11 +72,11 @@ admin@roboRIO-900-FRC:~/rtc-bq32k# i2cdetect -y 2
 
 Running ```dmesg``` will show something like this:  
 ```
-[   53.975048] bq32k 2-0068: Marshall's in your system messing with your clock!  
+[   53.975048] bq32k 2-0068: Enabling trickle charge!  
 [   53.975951] bq32k 2-0068: Enabled trickle RTC battery charge.  
 [   53.976784] bq32k 2-0068: rtc core: registered bq32k as rtc0  
 ```
 
 You can then proceed to set the clock and read from it:  
-Setting the clock: ```hwclock.util-linux --systohc --utc```  
-Reading from it: ```hwclock.util-linux -r -f /dev/rtc```
+Setting the clock: ```hwclock.util-linux --systohc --utc -f /dev/rtc0```  
+Reading from it: ```hwclock.util-linux -r -f /dev/rtc0```
