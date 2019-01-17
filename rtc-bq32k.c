@@ -231,7 +231,7 @@ static int bq32k_probe(struct i2c_client *client,
                 dev_warn(dev, "Oscillator Failure. Check RTC battery.\n");
 
         /* Begin Marshall's awesome modifications to enable the RTC */
-        dev_info(dev, "Marshall's in your system messing with your clock!\n");
+        dev_info(dev, "Enabling trickle charge!\n");
         //regbat = 0x05; //This enables charging with the diode
         regbat = 0x45; //This enables charging without the diode - we don't need no stinkin' diodes!
         error = bq32k_write(dev, &regbat, BQ32K_CFG2, 1);
