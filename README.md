@@ -1,4 +1,12 @@
 # RoboRIO BQ32000 Kernel Module
+
+Run the RoboRIOSetup.sh script on the RoboRIO to build and install the module and startup script. Step by step instructions instead of the script are below
+
+
+
+_______________________________________________________
+
+
 Adding an RTC to the RoboRIO with the BQ32000 from TI
 
 RTC Datasheet:  
