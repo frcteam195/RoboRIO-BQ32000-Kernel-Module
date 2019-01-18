@@ -1,7 +1,7 @@
 #!/bin/sh
 
 opkg update
-opkg install coreutils i2c-tools ntp ntp-tickadj
+opkg install coreutils i2c-tools ntpdate
 mkdir bq
 cd bq
 wget https://raw.githubusercontent.com/frcteam195/RoboRIO-BQ32000-Kernel-Module/master/Makefile
@@ -15,11 +15,7 @@ versioning_call make
 cp rtc-bq32k.ko /lib/modules/`uname -r`/kernel
 depmod
 echo bq32000 0x68 | tee /sys/class/i2c-adapter/i2c-2/new_device
-/etc/init.d/ntpd stop
-# before you do this step, you should set the date to as close to now as possible 
-# date -s "Thu Jan  17 16:56:30 EST 2019"
-ntpd -gq
-/etc/init.d/ntpd start
+ntpdate -s 0.us.pool.ntp.org
 hwclock.util-linux --systohc --utc -f /dev/rtc0
 echo '#!/bin/sh' > /etc/init.d/rtcenable.sh
 echo 'echo bq32000 0x68 | tee /sys/class/i2c-adapter/i2c-2/new_device' >> /etc/init.d/rtcenable.sh
